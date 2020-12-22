@@ -2,54 +2,67 @@
 
 ## users テーブル
 
-| Column    | Type   | Options     |
-| --------  | ------ | ----------- |
-| name      | string | null: false |
-| email     | string | null: false |
-| password  | string | null: false |
-| address   | string | null: false |
-| profile   | string | null: false |
-| nick_name | string | null: false |
+| Column             | Type   | Options                   |
+| --------           | ------ | -----------               |
+| first_name         | string | null: false               |
+| first_name_f       | string | null: false               |
+| last_name          | string | null: false               |
+| last_name_f        | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| address            | string | null: false               |
+| profile            | string | null: false               |
+| nick_name          | string | null: false               |
+| birth_day          | date   | null: false               |
 
 ### Association
 
 - has_many :items
+- has_one :buy
 
 ## items テーブル
 
-| Column        | Type   | Options     |
-| ------        | ------ | ----------- |
-| title         | string | null: false |
-| text          | string | null: false |
-| image         | string | null: false |
-| category      | string | null: false |
-| status        | string | null: false |
-| shipping_fee  | string | null: false |
-| shipping_date | string | null: false |
+| Column           | Type    | Options     |
+| ------           | ------  | ----------- |
+| title            | string  | null: false |
+| text             | string  | null: false |
+| price            | integer | null: false |
+| image            | string  | null: false |
+| category_id      | string  | null: false |
+| status_id        | string  | null: false |
+| shipping_fee_id  | string  | null: false |
+| shipping_date_id | string  | null: false |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :buy
+
 
 ## buys テーブル
 
-| Column  | Type       | Options                             |
-| ------- | ---------- | ------------------------------      |
-| item         | references | null: false, foreign_key: true |
-| seller       | references | null: false, foreign_key: true |
-| buyer        | references | null: false, foreign_key: true |
-| shipping_fee | references | null: false                    |
-| shipping_fee | references | null: false                    |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| item_id | references | null: false, foreign_key: true |
+| user_id | references | null: false, foreign_key: true |
+
 
 ### Association
-- has_one :user
-- has_one :item
+- belongs_to :user
+- belongs_to :item
+- has_one :address
+
 
 ## addresses テーブル
 
-| Column            | Type       | Options               |
-| -------           | ---------- | --------------------- |
-| shipping_address  | string | null: false               |
+| Column            | Type       | Options                   |
+| -------           | ---------- | ---------------------     |
+| code              | integer   | null: false               |
+| prefecture        | string     | null: false               |
+| city              | string     | null: false               |
+| street            | string     | null: false               |
+| building          | string     | null: false               |
+| tel               | integer    | null: false               |
 
 ### Association
-- has_one :buy
+- belongs_to :buy
