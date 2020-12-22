@@ -3,7 +3,7 @@
 ## users テーブル
 
 | Column             | Type   | Options                   |
-| --------           | ------ | -----------               |
+|--------------------|--------|---------------------------|
 | first_name         | string | null: false               |
 | first_name_f       | string | null: false               |
 | last_name          | string | null: false               |
@@ -21,7 +21,7 @@
 ## items テーブル
 
 | Column           | Type       | Options     |
-| ------           | ------     | ----------- |
+|------------------|------------|-------------|
 | title            | string     | null: false |
 | text             | text       | null: false |
 | price            | integer    | null: false |
@@ -41,7 +41,7 @@
 ## buys テーブル
 
 | Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
+|---------|------------|--------------------------------|
 | item    | references | null: false, foreign_key: true |
 | user    | references | null: false, foreign_key: true |
 
@@ -55,7 +55,7 @@
 ## addresses テーブル
 
 | Column            | Type       | Options                        |
-| -------           | ---------- | ---------------------          |
+|-------------------|------------|--------------------------------|
 | code              | string     | null: false                    |
 | prefecture_id     | integer    | null: false                    |
 | city              | string     | null: false                    |
