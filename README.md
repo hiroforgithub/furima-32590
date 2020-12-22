@@ -10,33 +10,30 @@
 | last_name_f        | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| address            | string | null: false               |
-| profile            | string | null: false               |
 | nick_name          | string | null: false               |
 | birth_day          | date   | null: false               |
 
 ### Association
 
 - has_many :items
-- has_one :buy
+- has_many :buy
 
 ## items テーブル
 
 | Column           | Type    | Options     |
 | ------           | ------  | ----------- |
-| title            | string  | null: false |
+| title            | text    | null: false |
 | text             | string  | null: false |
 | price            | integer | null: false |
-| image            | string  | null: false |
-| category_id      | string  | null: false |
-| status_id        | string  | null: false |
-| shipping_fee_id  | string  | null: false |
-| shipping_date_id | string  | null: false |
+| category_id      | integer | null: false |
+| status_id        | integer | null: false |
+| shipping_fee_id  | integer | null: false |
+| shipping_date_id | integer | null: false |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :buy
+- has_one :buy
 
 
 ## buys テーブル
@@ -55,14 +52,14 @@
 
 ## addresses テーブル
 
-| Column            | Type       | Options                   |
-| -------           | ---------- | ---------------------     |
-| code              | integer   | null: false               |
-| prefecture        | string     | null: false               |
-| city              | string     | null: false               |
-| street            | string     | null: false               |
-| building          | string     | null: false               |
-| tel               | integer    | null: false               |
+| Column            | Type       | Options                        |
+| -------           | ---------- | ---------------------          |
+| code              | integer    | null: false, foreign_key: true |
+| prefecture_id     | integer    | null: false, foreign_key: true |
+| city              | string     | null: false, foreign_key: true |
+| street            | string     | null: false, foreign_key: true |
+| building          | string     | foreign_key: true              |
+| tel               | string     | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :buy
