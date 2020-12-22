@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column           | Type    | Options     |
-| ------           | ------  | ----------- |
-| title            | string  | null: false |
-| text             | text    | null: false |
-| price            | integer | null: false |
-| category_id      | integer | null: false |
-| status_id        | integer | null: false |
-| shipping_fee_id  | integer | null: false |
-| shipping_date_id | integer | null: false |
-| user_id          | integer | null: false |
-| prefecture_id    | integer | null: false |
+| Column           | Type       | Options     |
+| ------           | ------     | ----------- |
+| title            | string     | null: false |
+| text             | text       | null: false |
+| price            | integer    | null: false |
+| category_id      | integer    | null: false |
+| status_id        | integer    | null: false |
+| shipping_fee_id  | integer    | null: false |
+| shipping_date_id | integer    | null: false |
+| user             | references | null: false, foreign_key: true |
+| prefecture_id    | integer    | null: false |
 
 ### Association
 
@@ -60,9 +60,9 @@
 | prefecture_id     | integer    | null: false                    |
 | city              | string     | null: false                    |
 | street            | string     | null: false                    |
-| building          | string     | foreign_key: true              |
+| building          | string     |                                |
 | tel               | string     | null: false                    |
-| buy_id            | integer    | null: false, foreign_key: true |
+| buy               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :buy
