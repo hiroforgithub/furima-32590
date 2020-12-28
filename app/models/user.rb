@@ -18,4 +18,7 @@ class User < ApplicationRecord
       validates :last_name_f
     end
   end
+
+  has_one_attached :image
+  
 end
