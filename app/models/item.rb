@@ -3,11 +3,11 @@ class Item < ApplicationRecord
   validates :text, presence: true
   validates :price, presence: true
   validates :image, presence: true
-  validates :category, presence: true
-  validates :prefecture, presence: true
-  validates :shipping_date, presence: true
-  validates :shipping_fee, presence: true
-  validates :status, presence: true
+  validates :category_id, presence: true
+  validates :prefecture_id, presence: true
+  validates :shipping_date_id, presence: true
+  validates :shipping_fee_id, presence: true
+  validates :status_id, presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -18,5 +18,4 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_one :buy
-
 end
