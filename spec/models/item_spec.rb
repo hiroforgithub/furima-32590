@@ -21,19 +21,19 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
     it "priceの範囲が¥300~9,999,999の間であること" do
-      @item.price = 22
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
     it "priceの範囲が¥300~9,999,999の間であること" do
-      @item.price = 99999999
+      @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
     it "priceは半角数字のみ入力可能である" do
-      @item.price = nil
+      @item.price = "ああああ"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is invalid")
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
     it "imageが空では登録できないこと" do
       @item.image = nil
