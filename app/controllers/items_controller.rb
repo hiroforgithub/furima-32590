@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
   end
+  #item_controllerを反映させるための記述
 
   def new
     @item = Item.new
