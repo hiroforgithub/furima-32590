@@ -2,8 +2,9 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!,only: [:new]
   
   def index
-    @items = Item.all
+    @items = Item.all.order("id DESC")
   end
+  #item_controllerを反映させるための記述
 
   def new
     @item = Item.new
