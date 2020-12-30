@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!,only: [:new]
+  before_action :set_item, only: [:show]
   
   def index
-    @items = Item.all.order("id DESC")
+    @items = Item.all.order("created_at DESC")
   end
-  #item_controllerを反映させるための記述
 
   def new
     @item = Item.new
@@ -18,10 +18,17 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+  
+  def show
+  end
 
   private
   def item_params
     params.require(:item).permit(:title, :image, :text, :price, :category_id, :status_id, :shipping_fee_id, :shipping_date_id, :prefecture_id).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 
