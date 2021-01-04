@@ -14,7 +14,6 @@ class BuyAddress
   end
 
   def save
-
     # 購入の情報を保存
     Buys.create(item_id: item_id, user_id: user_id)
     # 住所の情報を保存
