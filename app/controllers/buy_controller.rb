@@ -4,8 +4,9 @@ class BuyController < ApplicationController
     @item = Item.find(params[:item_id])
     @buy_address = BuyAddress.new
   end
-
+  
   def create
+    @item = Item.find(params[:item_id])
     @buy_address = BuyAddress.new(buy_params)
     if @buy_address.valid? 
       @buy_address.save
