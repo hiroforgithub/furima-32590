@@ -3,12 +3,11 @@ class BuyAddress
   attr_accessor :item_id, :user_id, :code, :prefecture_id, :city, :street, :building, :tel, :buy_id, :token
 
   with_options presence: true do
-    validates :code
+    validates :code, format: { with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}\z/}
     validates :prefecture_id
     validates :city
     validates :street
-    # validates :building
-    validates :tel
+    validates :tel, length: { maximum: 11}, format: { with: /\A\d{10,11}\z/}
     validates :user_id
     validates :item_id
     validates :token
