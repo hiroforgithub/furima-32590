@@ -12,6 +12,11 @@ RSpec.describe BuyAddress, type: :model do
     it "正しく入力されたとき登録ができること" do
       expect(@buy_address).to be_valid
     end
+
+    it "建物名が空でも登録ができること" do
+      @buy_address.building = nil
+      expect(@buy_address).to be_valid
+    end
   end
 
   context '商品購入ができない時' do
@@ -64,7 +69,7 @@ RSpec.describe BuyAddress, type: :model do
     end
   
     it "telにはハイフンが必要でないこと" do
-      @buy_address.tel = nil
+      @buy_address.tel = "123-4567891"
       @buy_address.valid?
       expect(@buy_address.errors.full_messages).to include("Tel is invalid")
     end
