@@ -4,6 +4,22 @@ RSpec.describe BuyAddress, type: :model do
   before do
     @buy_address = FactoryBot.build(:buy_address)
   end
+  
+    it "正しく入力されたとき登録ができること" do
+      expect(@buy_address).to be_valid
+    end
+
+    it "user_idが空では登録できないこと" do
+      @buy_address.user_id = nil
+      @buy_address.valid?
+      expect(@buy_address.errors.full_messages).to include("User can't be blank")
+    end
+
+    it "item_idが空では登録できないこと" do
+      @buy_address.item_id = nil
+      @buy_address.valid?
+      expect(@buy_address.errors.full_messages).to include("Item can't be blank")
+    end
 
     it "codeが空では登録できないこと" do
       @buy_address.code = nil
@@ -51,6 +67,12 @@ RSpec.describe BuyAddress, type: :model do
       @buy_address.tel = 123456789123
       @buy_address.valid?
       expect(@buy_address.errors.full_messages).to include("Tel is too long (maximum is 11 characters)")
+    end
+
+    it "telは英数混合では登録できないこと" do
+      @buy_address.tel = "1234567891aa"
+      @buy_address.valid?
+      expect(@buy_address.errors.full_messages).to include("Tel is invalid")
     end
 
     it "tokenが空では登録できないこと" do
