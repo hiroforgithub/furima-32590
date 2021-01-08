@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!,only: [:new, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
-  
+
   def index
     @items = Item.all.order("created_at DESC")
   end
@@ -37,6 +37,8 @@ class ItemsController < ApplicationController
   def destroy
     redirect_to root_path if @item.destroy
   end
+  #(任意実装メモ)@item.destroyが失敗した場合を考慮し、
+   #else文を追記し、renderでshowアクションを呼び出してあげると良い
   
   private
   def item_params
